@@ -60,3 +60,21 @@ The above will return a URL, please use that to view the logs on any browser (ch
 
 
 # Canonical ICA
+
+## Preparing the dataset 
+
+Please download and transfer the filtered data from [here](https://drive.google.com/file/d/1B6Zy_3FXp5eCa--RMXEnojEW3Trhm-7K/view?usp=sharing) 
+
+The following was the reference I sued for writing the code. [NiLearns]( https://nilearn.github.io/modules/generated/nilearn.decomposition.CanICA.html)
+
+## Running the code
+
+```
+python canICA.py --path <path to the filtered data file> --num_com <number of components to run ICA on>
+```
+
+This will save the results at `untracked/canica_resting_state.nii.gz`
+
+If you are working on a jupyter notebook, or machine that has supprt for GUI it will also show some plots and results. 
+
+
