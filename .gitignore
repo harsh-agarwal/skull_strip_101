@@ -1,5 +1,5 @@
 data/
-*__pycache__
+__pycache__
 *.env
 run_celery.sh
 *.temp/
@@ -7,3 +7,5 @@ run_celery.sh
 **.pyc
 untracked
 nilearn_cache
+.vscode
+
