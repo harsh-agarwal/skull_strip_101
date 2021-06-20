@@ -1,0 +1,6 @@
+data/
+*__pycache__
+*.env
+run_celery.sh
+*.temp/
+*logs*
