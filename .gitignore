@@ -8,4 +8,6 @@ run_celery.sh
 untracked
 nilearn_cache
 .vscode
+**/__pycache__
+**/*.pyc
 

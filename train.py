@@ -50,6 +50,7 @@ class BasicUnet(pl.LightningModule):
             on_epoch=True,
             prog_bar=True,
             logger=True,
+            sync_dist=True,
         )
         return prediction
 
@@ -82,10 +83,10 @@ if __name__ == "__main__":
     ap.add_argument(
         "--max_epochs", default=50, help="Number of epochs to run your trainig for"
     )
-    
+
     ap.add_argument(
         "--gpus",
-        default=None,
+        default=-1,
         help="Number of gpus on run on training. Assumption all gpus on the same machine. Also we assume atleast one gpu is present",
     )
 
@@ -97,8 +98,8 @@ if __name__ == "__main__":
         )
     else:
         data_module = DataLoaderModule(arguments.path)
-
-    logger = TensorBoardLogger(save_dir="./logs/", version=1, name="lightning_logs")
+    os.makedirs("./logs", exist_ok=True)
+    logger = TensorBoardLogger(save_dir="./logs/", version=None, name="lightning_logs")
     basicModel = BasicUnet()
 
     trainer = pl.Trainer(
