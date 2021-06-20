@@ -22,7 +22,6 @@ class UnetModel(nn.Module):
     def forward(self, x):
         x, downsampling_features = self.encoder(x)
         x = self.decoder(x, downsampling_features)
-        x = self.sigmoid(x)
         print("Final output shape: ", x.shape)
         return x
 

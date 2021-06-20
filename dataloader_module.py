@@ -1,4 +1,5 @@
 import os
+from multiprocessing import cpu_count
 
 import numpy as np
 import pytorch_lightning as pl
@@ -7,7 +8,7 @@ from torch.utils.data import DataLoader
 from torch.utils.data.dataset import TensorDataset
 from torchvision import transforms
 
-from utils import get_numpy_from_niigz, resample_nib_image
+from utils import get_numpy_from_niigz
 
 
 class DataLoaderModule(pl.LightningDataModule):
@@ -24,8 +25,8 @@ class DataLoaderModule(pl.LightningDataModule):
 
         list_of_folders = os.listdir(os.path.join(self.data_dir))
         list_of_folders.sort()
-        # num_samples = len(list_of_folders)
-        num_samples = 10
+        num_samples = len(list_of_folders)
+
         train_split = [0, int(self.split * 0.9 * num_samples)]
         val_split = [int(self.split * 0.9 * num_samples), int(self.split * num_samples)]
         test_split = [int(self.split * num_samples), num_samples]
@@ -148,10 +149,10 @@ class DataLoaderModule(pl.LightningDataModule):
             )
 
     def train_dataloader(self):
-        return DataLoader(self.train_data, batch_size=1, num_workers=0)
+        return DataLoader(self.train_data, batch_size=1, num_workers=cpu_count())
 
     def val_dataloader(self):
-        return DataLoader(self.val_data, batch_size=1, num_workers=0)
+        return DataLoader(self.val_data, batch_size=1, num_workers=cpu_count())
 
     def test_dataloader(self):
-        return DataLoader(self.test_data, batch_size=1, num_workers=0)
+        return DataLoader(self.test_data, batch_size=1, num_workers=cpu_count())
