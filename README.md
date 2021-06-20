@@ -1,4 +1,4 @@
-# Steps to setup the repo
+# Skull Stripping
 
 Please follow the following steps to setup the repository. 
 
@@ -32,3 +32,31 @@ Once you have verified anaconda/miniconda installed, please create a virtual env
 ```
 conda env create -f conda.yml
 ```
+
+## Running training for skull stripping
+
+Run the following command:
+
+```
+python train.py --path <path to the extracted data folder> 
+```
+
+Other key arguments that we can set are:
+
+`--gpus` : By default the code uses all the gpus on the machine 
+`--max_epochs`: te number of epochs we want the training to run 
+
+PS: With some very simple changes this code can support multi node, multi gpu training and various other possibilities like resuming from a previous checkpoint etc. I would add those changes later as and when time permits! 
+
+By default the code uses and sets up a tensorboard as a logger. One can view the training curves obtained by the following command in a different terminal: 
+
+```
+tensorboard --logdir ./logs/lightning_logs/ --bind_all
+```
+
+The above will return a URL, please use that to view the logs on any browser (checked and tested on google chrome)
+
+## Inference (documentation to be added)
+
+
+# Canonical ICA
