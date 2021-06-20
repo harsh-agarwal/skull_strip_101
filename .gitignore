@@ -6,3 +6,4 @@ run_celery.sh
 *logs*
 **.pyc
 untracked
+nilearn_cache
