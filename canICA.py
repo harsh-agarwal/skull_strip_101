@@ -1,4 +1,5 @@
 import argparse
+import os
 
 from nilearn.decomposition import CanICA
 from nilearn.plotting import plot_prob_atlas
@@ -17,6 +18,7 @@ def perform_canICA(n_com, path_data):
 
     canica.fit(path_data)
     canica_components_img = canica.components_img_
+    os.makedirs("./untracked", exist_ok=True)
     canica_components_img.to_filename("./untracked/canica_resting_state.nii.gz")
     plot_prob_atlas(canica_components_img, title="All ICA components")
 
