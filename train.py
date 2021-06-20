@@ -13,6 +13,7 @@ class BasicUnet(pl.LightningModule):
     def __init__(self):
         super().__init__()
         self.model = unet3d.UnetModel(1, 1)
+        self.loss_function = loss.DiceLoss()
 
     def forward(self, x):
 
@@ -23,7 +24,7 @@ class BasicUnet(pl.LightningModule):
 
         x, y = batch[0], batch[1]
         prediction = self.forward(x)
-        loss_calculated = loss.DiceLoss(y, prediction)
+        loss_calculated = self.loss_function.forward(y, prediction)
         self.log(
             "train_loss",
             loss_calculated,
@@ -38,7 +39,7 @@ class BasicUnet(pl.LightningModule):
 
         x, y = batch[0], batch[1]
         prediction = self.forward(x)
-        loss_calculated = loss.DiceLoss(y, prediction)
+        loss_calculated = self.loss_function.forward(y, prediction)
         self.log(
             "val_loss",
             loss_calculated,
@@ -53,7 +54,7 @@ class BasicUnet(pl.LightningModule):
 
         x, y = batch[0], batch[1]
         prediction = self.forward(x)
-        loss_calculated = loss.DiceLoss(y, prediction)
+        loss_calculated = self.loss_function.forward(y, prediction)
         self.log(
             "test_loss",
             loss_calculated,
