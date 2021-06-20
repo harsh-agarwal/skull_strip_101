@@ -23,3 +23,12 @@ sub-<identifier>_ses-NFB3_T1w_brainmask.nii.gz -> brain mask image
 
 ```
 
+## Prepare the virtual environment 
+
+Please get the latest installation of miniconda which can be easily downloaded from here https://docs.conda.io/en/latest/miniconda.html
+
+Once you have verified anaconda/miniconda installed, please create a virtual environment using the `conda.yml` in the repo using the following command. 
+
+```
+conda env create -f conda.yml
+```
