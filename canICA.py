@@ -1,3 +1,5 @@
+import argparse
+
 from nilearn.decomposition import CanICA
 from nilearn.plotting import plot_prob_atlas
 
@@ -21,5 +23,12 @@ def perform_canICA(n_com, path_data):
 
 if __name__ == "__main__":
 
-    path_data = "/extern/home/harshagarwal/brain_imaging/ican_data/rsfmri_data/rs_fmri/Filtered_4DVolume.nii"
-    perform_canICA(20, path_data)
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--path", default=None, help="path to the filtered data")
+    ap.add_argument("--num_com", default=20, type=int)
+    arguments = ap.parse_args()
+    if arguments.path is None:
+        path_data = "/extern/home/harshagarwal/brain_imaging/ican_data/rsfmri_data/rs_fmri/Filtered_4DVolume.nii"
+    else:
+        path_data = arguments.path
+    perform_canICA(arguments.num_com, path_data)
