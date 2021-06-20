@@ -65,8 +65,8 @@ class EncoderBlock(nn.Module):
                     down_sampling_features.append(x)
             elif k.startswith("max_pooling"):
                 x = op(x)
-                
 
+        return x, down_sampling_features
 
 
 class ConvTranspose(nn.Module):
