@@ -80,7 +80,7 @@ trainer = pl.Trainer(
     check_val_every_n_epoch=2,
     flush_logs_every_n_steps=100,
     logger=logger,
-    max_epochs=2,
-    num_processes=4,
+    max_epochs=50,
+    num_processes=16,
 )
 trainer.fit(basicModel, data_module)

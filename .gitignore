@@ -4,3 +4,4 @@ data/
 run_celery.sh
 *.temp/
 *logs*
+**.pyc
